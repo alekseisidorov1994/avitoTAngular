@@ -1,0 +1,23 @@
+<div class="contentOverlay" *ngIf="image; else loading" >
+  <a routerLink="/" class="contentOverlay__close" (click)="disableScroll()"></a>
+  <div class="contentOverlay__wrap">
+    <div class="contentOverlay__image">
+      <img [src]="image.url" alt="image" class="contentOverlay__image-img" >
+    </div>
+    <div class="contentOverlay__form">
+      <input type="text" class="contentOverlay__input" placeholder="Ваше имя" [(ngModel)]="formComment.name">
+      <input type="text" class="contentOverlay__input" placeholder="Ваш комментарий" [(ngModel)]="formComment.comment">
+      <button class="contentOverlay__button" (click)="submitComment()" [disabled]="!formComment"> Оставить комментарий</button>
+    </div>
+    <div class="contentOverlay__comments" *ngFor="let comment of image.comments">
+      <div class="contentOverlay__comment-field">
+        <div class="contentOverlay__comment-date">{{comment.date | date:'dd.MM.yyyy'}}</div>
+        <div class="contentOverlay__comment-text">{{comment.text}}</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<ng-template #loading>
+  <p [ngStyle]="{color: 'white'}">Loading...</p>
+</ng-template>

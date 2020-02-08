@@ -1,0 +1,13 @@
+
+<div class="wall">
+  <div class="wall__wrap" *ngIf="arrayImages.length; else loading">
+    <app-photo class="wall__item" *ngFor="let image of arrayImages" [image]="image"></app-photo>
+  </div>
+</div>
+<ng-template #loading>
+  <p [ngStyle]="{
+  textAlign: 'center',
+  marginTop: '65px'
+  }">Loading...</p>
+</ng-template>
+<router-outlet></router-outlet>
